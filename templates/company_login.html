@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold mb-6">Company Login</h2>
+    <form id="companyLoginForm" class="bg-white shadow-md rounded-lg p-6 space-y-4">
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input type="email" name="email" placeholder="Email" required 
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+        </div>
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+            <input type="password" name="password" placeholder="Password" required 
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" />
+        </div>
+        <button type="submit" 
+                class="w-full inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Login
+        </button>
+    </form>
+    <p class="mt-4 text-gray-600">Don't have an account? <a href="/company/register" class="text-indigo-600 hover:underline">Register here</a></p>
+</div>
+
+<script>
+    document.getElementById("companyLoginForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const data = {
+            email: formData.get('email'),
+            password: formData.get('password')
+        };
+
+        fetch('/login/company', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Login failed');
+            return response.json();
+        })
+        .then(data => {
+            alert(data.message);
+            window.location.href = '/company/dashboard';
+        })
+        .catch(error => alert(error.message));
+    });
+</script>
+{% endblock %}

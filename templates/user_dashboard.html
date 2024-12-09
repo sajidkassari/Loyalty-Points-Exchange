@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6">Welcome, {{ user_name }}!</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-2xl font-semibold mb-4">Points Balance</h2>
+            <p class="text-3xl font-bold">{{ points_balance }} Points</p>
+        </div>
+    </div>
+    <div class="mt-8 bg-white shadow-md rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-4">Redeem Loyalty Points</h2>
+        <form id="redeemPointsForm" method="post" class="space-y-4">
+            <div>
+                <label for="redeem_points" class="block text-sm font-medium text-gray-700">Points to Redeem</label>
+                <input type="number" name="redeem_points" id="redeem_points" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" required>
+            </div>
+            <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                Redeem Points
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.getElementById("redeemPointsForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(this);
+        const data = {
+            redeem_points: formData.get('redeem_points')
+        };
+
+        fetch('/redeem_points', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error('Failed to redeem points');
+            return response.json();
+        })
+        .then(data => {
+            alert(data.message);
+            // Refresh the page to show the updated points balance
+            window.location.reload();
+        })
+        .catch(error => alert(error.message));
+    });
+</script>
+{% endblock %}

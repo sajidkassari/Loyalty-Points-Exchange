@@ -1,0 +1,14 @@
+<header class="app-header bg-gray-900 text-white">
+  <div class="app-container mx-auto px-4 py-2 flex justify-between items-center">
+      <div class="logo">
+          <a href="/" class="text-xl font-bold">Loyalty Points System</a>
+      </div>
+      <div class="hidden md:block">
+          {% include 'partials/_desktop_header.html' %}
+      </div>
+      <div class="md:hidden">
+          {% include 'partials/_mobile_header.html' %}
+      </div>
+  </div>
+  <script src="/static/js/header.js"></script>
+</header>

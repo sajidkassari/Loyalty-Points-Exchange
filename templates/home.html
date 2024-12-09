@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mx-auto px-6 py-10">
+    <h1 class="text-5xl font-extrabold text-gray-800 text-center mb-6">Welcome to the Loyalty Points System</h1>
+    <p class="text-lg text-gray-600 text-center mb-10">Your one-stop solution for managing loyalty points effectively.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <!-- User Login Box -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-center mb-4">User Login</h2>
+        <p class="text-center mb-4">Access your account and manage your loyalty points.</p>
+        <a href="/user/login" class="block bg-blue-500 text-white rounded-lg px-4 py-2 text-center hover:bg-blue-600 transition duration-200">Login as User</a>
+      </div>
+      <!-- Company Login Box -->
+      <div class="bg-white shadow-lg rounded-lg p-6">
+        <h2 class="text-2xl font-semibold text-center mb-4">Company Login</h2>
+        <p class="text-center mb-4">Access your company account to manage customer points.</p>
+        <a href="/company/login" class="block bg-green-500 text-white rounded-lg px-4 py-2 text-center hover:bg-green-600 transition duration-200">Login as Company</a>
+      </div>
+    </div>
+
+    <div class="mb-10">
+      <h3 class="text-3xl font-semibold mb-4 text-center">How it Works</h3>
+      <ol class="list-decimal list-inside space-y-2 text-lg text-gray-600">
+        <li>Users earn loyalty points through purchases.</li>
+        <li>Points can be redeemed for discounts and rewards.</li>
+        <li>Companies can track and manage points for their customers.</li>
+      </ol>
+    </div>
+
+
+    <div class="mb-10">
+      <h3 class="text-3xl font-semibold mb-4 text-center">Frequently Asked Questions (FAQ)</h3>
+      <div class="space-y-4">
+        <div>
+          <h4 class="font-semibold">What are loyalty points?</h4>
+          <p class="text-gray-600">Loyalty points are rewards given to customers for their purchases, which can be redeemed for discounts or products.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold">How can I redeem my points?</h4>
+          <p class="text-gray-600">You can redeem your points during the checkout process on our platform.</p>
+        </div>
+        <div>
+          <h4 class="font-semibold">Who can use this system?</h4>
+          <p class="text-gray-600">Both individual users and companies can log in to manage their accounts and points.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center py-4 mt-10">
+      <p>&copy; 2024 Loyalty Points System. All rights reserved.</p>
+    </footer>
+  </div>
+{% endblock %}
